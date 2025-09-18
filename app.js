@@ -5,6 +5,7 @@ const path = require("path");
 const session = require("express-session");
 const nunjucks = require("nunjucks");
 const dotenv = require("dotenv");
+const passport = require("passport");
 
 dotenv.config();
 const pageRouter = require("./routes/page");
@@ -21,7 +22,7 @@ nunjucks.configure("views", {
     watch: true,
 });
 sequelize
-    .sync({ force: fasle })
+    .sync({ force: false })
     .then(() => {
         console.log("데이터베이스 연결 성공");
     })
@@ -59,7 +60,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
-    res.locals.error = message.env.NODE_ENV !== "production" ? err : {};
+    res.locals.error = process.env.NODE_ENV !== "production" ? err : {};
     res.status(err.status || 500);
     res.render("error");
 });

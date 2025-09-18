@@ -37,7 +37,7 @@ exports.login = (req, res, next) => {
             }
             return res.redirect("/");
         });
-    });
+    })(req, res, next);
 };
 
 exports.logout = (req, res) => {

@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const { afterUploadImage, uploadPage } = require("../controllers/post");
+const { afterUploadImage, uploadPost } = require("../controllers/post");
 const { isLoggedIn } = require("../middlewares");
 
 const router = express.Router();
